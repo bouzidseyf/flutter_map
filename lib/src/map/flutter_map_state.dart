@@ -110,12 +110,13 @@ class FlutterMapState extends MapGestureMixin {
           onTap: handleTap,
           onLongPress: handleLongPress,
           onDoubleTap: handleDoubleTap,
-          child: GestureDetector(
-            onScaleStart: handleScaleStart,
-            onScaleUpdate: handleScaleUpdate,
-            onScaleEnd: handleScaleEnd,
-            child: layerStack,
-          ),
+          child: layerStack,
+          // GestureDetector(
+          //   onScaleStart: handleScaleStart,
+          //   onScaleUpdate: handleScaleUpdate,
+          //   onScaleEnd: handleScaleEnd,
+          //   child: layerStack,
+          // ),
         );
       }
 
