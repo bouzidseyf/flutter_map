@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/src/core/point.dart';
 import 'package:flutter_map/src/gestures/gestures.dart';
+import 'package:flutter_map/src/layer/custom_map.dart';
 import 'package:flutter_map/src/layer/group_layer.dart';
 import 'package:flutter_map/src/layer/overlay_image_layer.dart';
 import 'package:flutter_map/src/map/map.dart';
@@ -97,6 +98,10 @@ class FlutterMapState extends MapGestureMixin {
           .map((layer) => _createLayer(layer, widget.options.plugins))
           .toList();
 
+      // var mapWidget = layerWidgets.forEach((wid) {
+      //   if (wid is MyMap)
+      // });
+
       var layerStack = Stack(
         children: layerWidgets,
       );
@@ -146,6 +151,9 @@ class FlutterMapState extends MapGestureMixin {
     if (options is TileLayerOptions) {
       return TileLayer(
           options: options, mapState: mapState, stream: _merge(options));
+    }
+    if (options is MyMap) {
+      return options.child;
     }
     if (options is MarkerLayerOptions) {
       return MarkerLayer(options, mapState, _merge(options));
